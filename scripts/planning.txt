@@ -1,0 +1,23 @@
+
+##################
+### 2024 06 09 ###
+##################
+
+Each day the user can journal about any of a collection of topics.
+
+Each topic should have metadata, determining how the user interacts with it.
+
+Examples (for brainstorming):
+1) Developing hobby
+2) Exercise
+3) Once a week
+4) Miscellaneous life crap
+
+There should be a script to run for creating new topics,
+and for logging a day's activities for a given topic.
+
+There should be a script for returning all logged activities
+for a given topic, in a given timeframe.
+
+There should be a script for returning all logged activities on a given day.
+
