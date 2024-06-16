@@ -33,24 +33,12 @@ class Activity:
         return f'Activity({self.date}, {self.mins_dur}, {self.description[:20]}...)'
 
 class Topic:
-    def __init__(self, name: str, type: str, interval: str = 'Daily'):
+    def __init__(self, name: str, type: str):
         self.name = name
 
         # hobby, exercise, chore, etc
         self.type = type
-
-        # interval for updating
-        # if e.g. "Monday" then will ask for
-        # updates on Monday
-        # if e.g. "Daily" then will ask for 
-        # updates every day
-        # if "Weekly" then checks if last 
-        # update was more than a week ago
-        # if "15" then will ask for
-        # updates on 15th day of month
-
-        self.interval = interval
-
+        
         # flag for whether the user
         # wants to keep updating this activity
         # values: active, inactive
@@ -58,9 +46,61 @@ class Topic:
 
         # list of Activities
         self.activities = []
+
+        # regularity
+        string1 = '''How regularly will you update this topic?\n
+                y: yearly\n
+                m: monthly\n
+                w: weekly\n
+                d: daily\n
+                i: irregularly'''
+        valid_reg = False
+        while not valid_reg:
+            reg = input(prompt=string1).lower()
+            if reg in ['y','m','w','d','i']:
+                valid_reg = True
+            else:
+                print('That is not a valid option')
+
+        self.reg = reg
+        day_vals = []
+        if reg in ['y','m','w','d']:
+            
+            done = False
+            while not done:
+                string2 = f'''Enter a day value on which you will update
+                        this topic. These must be non-negative integers.\n
+
+                        e.g. if regularity is w, then 0 = Monday.\n
+
+                        If you are done entering values, enter "done".\n
+
+                        So far, you have entered {day_vals}.'''
+                
+                day = input(prompt=string2)
+                if day.lower() == 'done':
+                    done = True
+                else:
+                    try:
+                        day_int = int(day)
+                    except ValueError:
+                        print('Entered value is not an integer')
+                        continue
+                
+                    if day_int < 0:
+                        print('Entered integer must be non-negative.')
+                        continue
+                
+                    day_vals.append(day_int)
+            
+        self.day_vals = day_vals
+
+
+
+        
     
     def __repr__(self) -> str:
-        return f'Topic({self.name}, {self.type}, {self.interval})'
+        return f'Topic({self.name}, {self.type}, {self.day_vals})'
     
     # add activity
     def add_activity(

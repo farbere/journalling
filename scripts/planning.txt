@@ -21,3 +21,31 @@ for a given topic, in a given timeframe.
 
 There should be a script for returning all logged activities on a given day.
 
+
+
+##################
+### 2024 06 13 ###
+##################
+
+Each topic (e.g. a hobby or regular event)
+is a collection of activities (instances of that hobby/event),
+along with metadata describing the topic.
+
+I want to be able to run a script that can tell, 
+by the time at which it is run, which topics should
+be updated with new activities.
+
+For example, my running topic should be updated every day
+except Saturday. My rent payment topic should be updated
+every 1st of the month. My Apocalypse World topic should be
+updated every Thursday.
+
+Thus, each topic needs an attribute describing when it
+should be updated.
+
+I can also use this to get "points" or "consistency":
+if I do upload a new activity at the expected intervals
+(assuming the topic is regular) then I get points.
+
+Of course, there should also be the option of irregular topics.
+
